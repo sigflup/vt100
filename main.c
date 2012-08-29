@@ -7,6 +7,7 @@
 #include <X11/Xlib.h>
 #include <X11/keysym.h>
 #include <X11/Xcms.h>
+#include <X11/Xutil.h>
 #include <signal.h>
 #include <sys/time.h>
 #include <fcntl.h>
@@ -260,6 +261,7 @@ void io(void) {
 
 int main(void) {
  struct itimerval value;
+ XSizeHints hints;
 
  if(!(window.dpy = XOpenDisplay(NULL))) {
   fprintf(stderr, "Could not open display.\n");
@@ -293,6 +295,11 @@ int main(void) {
 				     0,
 				     window.black_pixel,
 				     window.white_pixel);
+
+ hints.flags = PResizeInc;
+ hints.width_inc = window.font_w; 
+ hints.height_inc = window.font_h;
+ XSetNormalHints(window.dpy, window.window, &hints);
 
  XSelectInput(window.dpy, window.window, EVENT_MASK);
  XMapWindow(window.dpy, window.window);
