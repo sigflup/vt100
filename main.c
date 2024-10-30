@@ -11,7 +11,6 @@
 #include <signal.h>
 #include <sys/time.h>
 #include <fcntl.h>
-#include <libutil.h>
 
 #include "vt100.h"
 #include "async.h"
@@ -241,7 +240,7 @@ void new_shell(void) {
   login_tty(slave);
   execl("/bin/sh", "/bin/sh", (char *)0);
  }
- fcntl(master, F_SETFL, fcntl(master, F_GETFL,0)|O_DIRECT|O_NONBLOCK); 
+ fcntl(master, F_SETFL, fcntl(master, F_GETFL,0)|O_NONBLOCK); 
  wsize.ws_col = window.w;
  wsize.ws_row = window.h;
  ioctl(slave, TIOCSWINSZ, &wsize);

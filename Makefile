@@ -1,4 +1,4 @@
-CC=gcc
+CC=cc
 CFLAGS=-I/usr/X11R6/include
 LDFLAGS=-L/usr/X11R6/lib -Wall -lX11 -lutil -ggdb
 
