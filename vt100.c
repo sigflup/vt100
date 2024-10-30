@@ -1115,10 +1115,6 @@ void term_wscroll(term_t *win, int dir) {
  int x,y;
  int store;
 
-#ifdef DEBUG
- printf("term_wscroll\n");
-#endif
- printf("%d %d %d %d\n", win->cursor_x, win->cursor_y, win->sy1, win->sy2);
 
  if(win->sy1 > win->sy2) {
   store = win->sy1;
